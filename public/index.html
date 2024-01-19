@@ -6,37 +6,62 @@
     <title>Color Shade Generator</title>
     <style>
         #colorSquare, #newColorSquare {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             margin-bottom: 10px;
+            display: inline-block; /* Display the squares inline */
+            margin-right: 10px; /* Add some margin between the squares */
+            border: 2px solid #000; /* Add a blank border with 2px thickness */
         }
+        
 
         #newHexDisplay {
             font-size: 18px;
             margin-top: 10px;
         }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
+    <div id="colorSquare"></div>
+    <div id="newColorSquare"></div>
+    
+    <br>
+
     <label for="colorInput">Enter Color (Hex): </label>
-    <input type="text" id="colorInput" placeholder="e.g., #ff5733">
+    <input type="text" id="colorInput" placeholder="e.g., #ff5733" oninput="updateColorSquare()">
+    <br>
+    
+    <label for="percentInput">Enter Percent: </label>
+    <input type="number" id="percentInput" placeholder="e.g., 10">
     <br>
 
     <label for="colorPicker">Pick a Color: </label>
     <input type="color" id="colorPicker" onchange="updateColor()">
     <br>
 
-    <label for="percentInput">Enter Percent: </label>
-    <input type="number" id="percentInput" placeholder="e.g., 10">
-    <br>
+    
 
     <button onclick="generateNewColor()">Generate New Color</button>
     
-    <div id="colorSquare"></div>
-    <div id="newColorSquare"></div>
-
     <div id="newHexDisplay"></div>
+    
 
     <script>
         function generateNewColor() {
@@ -70,6 +95,18 @@
 
             // Trigger generation of new color
             generateNewColor();
+        }
+
+        function updateColorSquare() {
+            var colorInput = document.getElementById("colorInput").value;
+
+            // Add "#" if it's not already there
+            if (!colorInput.startsWith("#")) {
+                colorInput = "#" + colorInput;
+            }
+
+            // Update color square
+            document.getElementById("colorSquare").style.backgroundColor = colorInput;
         }
 
         function isValidHex(hex) {
