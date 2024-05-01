@@ -58,7 +58,7 @@
     <label for="colorInput">Enter Color (Hex): </label>
     <input type="text" id="colorInput" placeholder="e.g., #ff5733" oninput="updateColorSquare()">
     
-    <button onclick="generateNewColor()">Generate New Color</button>
+    <button onclick="generateNewColor()">Generate Old Color</button>
 
     <br>
 
@@ -104,7 +104,7 @@
                 alert(validationResult.message);
                 // Clear input fields for consistent UI interaction
                 document.getElementById("colorInput").value = "";
-                document.getElementById("percentInput").value = "";
+                document.getElementById("percentInput").value = "0";
             }
         }
 
